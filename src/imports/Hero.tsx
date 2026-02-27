@@ -1,7 +1,10 @@
 import imgHero from "figma:asset/91adc766b1205f595aa50f4db3f2b02a40094294.png";
 import { useForm } from "../app/context/FormContext";
+import { useVideo } from "../app/context/VideoContext";
 
 function NavBar() {
+  const { openVideo } = useVideo();
+  
   return (
     <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="NAV BAR">
       {/* Logo */}
@@ -26,7 +29,10 @@ function NavBar() {
         </span>
       </div>
       {/* CTA nav button */}
-      <div className="bg-[#0d1353] flex items-center justify-center px-4 md:px-6 py-2 rounded-full shrink-0 cursor-pointer hover:opacity-90 transition-opacity">
+      <div 
+        onClick={openVideo}
+        className="bg-[#0d1353] flex items-center justify-center px-4 md:px-6 py-2 rounded-full shrink-0 cursor-pointer hover:opacity-90 transition-opacity"
+      >
         <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold text-white text-xs md:text-sm uppercase tracking-wide">Watch the video</p>
       </div>
     </div>
