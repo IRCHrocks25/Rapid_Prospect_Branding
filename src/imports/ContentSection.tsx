@@ -1,6 +1,6 @@
-import imgKane from "figma:asset/cdb0520d342c89ede7e7c5c40568e35e9480e1c9.png";
+import imgKane from "figma:asset/c30511ef0c221800b1cbb3424dddbadd7bee2ab4.png";
 import imgJeff from "figma:asset/71389237e1e07cd893b8939905c28896608797aa.png";
-import { useForm } from "../app/context/FormContext";
+import { useFormModal } from "../app/hooks/useFormModal";
 
 function LeadershipTitle() {
   return (
@@ -125,11 +125,11 @@ function ClosingText() {
 }
 
 function RegisterButton() {
-  const { openForm } = useForm();
-  
+  const { openModal } = useFormModal();
+
   return (
     <div
-      onClick={openForm}
+      onClick={openModal}
       className="flex h-[53.154px] items-center justify-center px-4 py-[11.045px] rounded-[27.612px] w-full max-w-[472.172px] cursor-pointer"
       data-name="ButtonContainer"
       style={{
@@ -138,7 +138,7 @@ function RegisterButton() {
       }}
     >
       <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[20.709px] text-[13px] md:text-[16.567px] text-center text-white uppercase">
-        REGISTER FOR THE NEXT AVAILABLE SESSION
+        RESERVE MY FREE WORKSHOP SEAT
       </p>
     </div>
   );
@@ -162,7 +162,7 @@ export default function ContentSection() {
       className="bg-white w-full"
       data-name="Content Section"
     >
-      <div className="flex flex-col gap-8 md:gap-[54px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[200px] py-10 md:py-[88px] w-full">
+      <div className="max-w-[1728px] mx-auto flex flex-col gap-8 md:gap-[54px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[270px] py-10 md:py-[88px] w-full">
         <LeadershipTitle />
         <HostsContent />
         <ClosingSection />

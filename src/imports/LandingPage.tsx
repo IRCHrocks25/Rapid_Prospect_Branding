@@ -1,6 +1,8 @@
 import svgPaths from "./svg-x0sxij5v6";
 import Hero from "./Hero";
-import { useForm } from "../app/context/FormContext";
+import AuthorName from "./AuthorName";
+import AuthorNameBranson from "./AuthorName-2030-70";
+import { useFormModal } from "../app/hooks/useFormModal";
 import imgRecognitionItem11 from "figma:asset/7ec0de8a8abdc498a15aadceb83ba4791beff1b3.png";
 import imgRecognitionItem21 from "figma:asset/3ff4e580ddef3f92a5044bdd3bd162ff9f3ad2c5.png";
 import imgRecognitionItem31 from "figma:asset/e47fbbaa0b5f9e3f81a1e223712e2cef7b46b31c.png";
@@ -24,12 +26,8 @@ import imgKane2 from "figma:asset/020b5506db23b15144229a85f26085cc4972bfaa.png";
 import imgFaq from "figma:asset/0ca98d62cef38cf31052ca6af2f311e5a993b238.png";
 import imgImage2 from "figma:asset/ed9e3ebabc64555f9e291f2b80d137e269613998.png";
 import FeaturedOn from "./FeaturedOn";
-import AwardsSection from "./AwardsSection-45-701";
-import TrustpilotSection from "./TrustpilotSection";
-import Frame1707482421 from "./Frame1707482421";
-import StatsStrip from "./StatsContainer";
+
 import ContentSection from "./ContentSection";
-import NavBar from "./NavBar";
 
 function HeadlineContainer1() {
   return (
@@ -72,12 +70,10 @@ function RecognitionItems() {
 
 function RecognitionSection() {
   return (
-    <div className="bg-white relative shrink-0 w-full" data-name="Recognition Section">
-      <div className="flex flex-col items-center size-full">
-        <div className="content-stretch flex flex-col gap-[35.206px] items-center px-4 sm:px-8 md:px-12 lg:px-[120px] xl:px-[200px] py-[39.348px] relative w-full">
-          <HeadlineContainer1 />
-          <RecognitionItems />
-        </div>
+    <div className="bg-white w-full" data-name="Recognition Section">
+      <div className="max-w-[1728px] mx-auto flex flex-col gap-[35.206px] items-center px-4 sm:px-8 md:px-12 lg:px-[120px] xl:px-[200px] py-[39.348px] w-full">
+        <HeadlineContainer1 />
+        <RecognitionItems />
       </div>
     </div>
   );
@@ -86,11 +82,6 @@ function RecognitionSection() {
 function Frame1() {
   return (
     <div className="content-stretch flex flex-col gap-[14px] items-start relative shrink-0 w-full">
-      <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[1.15] relative shrink-0 tracking-[-1px] md:tracking-[-1.5463px] w-full">
-        <span className="leading-[1.15] text-[24px] sm:text-[30px] md:text-[38.657px]">The</span>
-        <span className="font-['Playfair_Display:Bold_Italic',sans-serif] italic leading-[1.15] text-[25px] sm:text-[32px] md:text-[38.657px]">{` $50 Billion Problem `}</span>
-        <span className="leading-[1.15] text-[24px] sm:text-[30px] md:text-[38.657px]">{`Nobody's Talking About`}</span>
-      </p>
       <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[1.4] relative shrink-0 text-[15px] md:text-[17.948px] tracking-[-0.1795px] w-full">Right now, Fortune 500 companies and mid-market enterprises are hemorrhaging money on AI initiatives that look brilliant on paper but die silent deaths in execution.</p>
       <div className="font-['Plus_Jakarta_Sans:Regular',sans-serif] font-normal leading-[1.6] relative shrink-0 text-[14px] md:text-[16.567px] tracking-[-0.1657px] w-full">
         <p className="mb-2">The technology works. The strategy is sound. The ROI projections are real.</p>
@@ -179,9 +170,20 @@ function TextContainer1() {
 
 function Frame3() {
   return (
-    <div className="bg-white flex flex-col md:flex-row gap-8 md:gap-[69px] items-start md:items-end px-4 sm:px-8 md:px-16 lg:px-[270px] py-10 md:py-[68px] relative shrink-0 w-full">
-      <Frame2 />
-      <TextContainer1 />
+    <div className="bg-white w-full">
+      <div className="max-w-[1728px] mx-auto flex flex-col gap-8 md:gap-[48px] items-center px-4 sm:px-8 md:px-16 lg:px-[270px] py-10 md:py-[68px] w-full">
+        {/* Centered title above columns */}
+        <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[1.15] tracking-[-1px] md:tracking-[-1.5463px] text-center text-[#0d1353] w-full">
+          <span className="leading-[1.15] text-[24px] sm:text-[30px] md:text-[38.657px]">The</span>
+          <span className="font-['Playfair_Display:Bold_Italic',sans-serif] italic leading-[1.15] text-[25px] sm:text-[32px] md:text-[38.657px]">{` $50 Billion Problem `}</span>
+          <span className="leading-[1.15] text-[24px] sm:text-[30px] md:text-[38.657px]">{`Nobody's Talking About`}</span>
+        </p>
+        {/* Two columns */}
+        <div className="flex flex-col md:flex-row gap-8 md:gap-[69px] items-start md:items-end w-full">
+          <Frame2 />
+          <TextContainer1 />
+        </div>
+      </div>
     </div>
   );
 }
@@ -189,14 +191,9 @@ function Frame3() {
 function AuthorInfo() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Author Info">
-      <p className="bg-clip-text font-['Manrope:Bold',sans-serif] font-bold leading-[0] relative shrink-0 text-[0px] text-[14.97px] text-white w-full" style={{ backgroundImage: "linear-gradient(90deg, rgb(60, 128, 255) 0%, rgb(117, 34, 189) 100%), linear-gradient(-4.53062deg, rgb(249, 5, 242) 16.982%, rgb(0, 0, 0) 86.805%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)", WebkitTextFillColor: "transparent" }}>
-        <span className="bg-clip-text font-['Plus_Jakarta_Sans:Bold',sans-serif] leading-[20.316px]" style={{ backgroundImage: "linear-gradient(90deg, rgb(60, 128, 255) 0%, rgb(117, 34, 189) 100%), linear-gradient(-4.53062deg, rgb(249, 5, 242) 16.982%, rgb(0, 0, 0) 86.805%), linear-gradient(90deg, rgb(13, 19, 83) 0%, rgb(13, 19, 83) 100%)", WebkitTextFillColor: "transparent" }}>
-          ROBERT
-        </span>
-        <span className="bg-clip-text font-['Plus_Jakarta_Sans:Light',sans-serif] font-light leading-[20.316px]" style={{ backgroundImage: "linear-gradient(90deg, rgb(60, 128, 255) 0%, rgb(117, 34, 189) 100%), linear-gradient(-4.53062deg, rgb(249, 5, 242) 16.982%, rgb(0, 0, 0) 86.805%), linear-gradient(90deg, rgb(13, 19, 83) 0%, rgb(13, 19, 83) 100%)", WebkitTextFillColor: "transparent" }}>
-          KIYOSAKI
-        </span>
-      </p>
+      <div style={{ width: "126.045px", height: "11.5117px" }}>
+        <AuthorName />
+      </div>
       <p className="font-['Plus_Jakarta_Sans:Regular',sans-serif] font-normal leading-[16.039px] relative shrink-0 text-[10.693px] w-full">{`American businessman and author, known for the Rich Dad Poor Dad series `}</p>
     </div>
   );
@@ -221,13 +218,11 @@ function TestimonialContainer() {
 
 function ContentSection1() {
   return (
-    <div className="bg-[#f5f4fc] relative shrink-0 w-full" data-name="Content Section">
-      <div className="flex flex-row items-center justify-center size-full">
-        <div className="content-center flex flex-wrap gap-[11.735px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[180px] py-[17.258px] relative w-full">
-          <TestimonialContainer />
-          <div className="h-[274.398px] relative shrink-0 w-[239.538px]" data-name="Group 1171275805 1">
-            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgGroup11712758051} />
-          </div>
+    <div className="bg-[#f5f4fc] w-full" data-name="Content Section">
+      <div className="max-w-[1728px] mx-auto flex flex-wrap gap-[11.735px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[180px] py-[17.258px] w-full">
+        <TestimonialContainer />
+        <div className="h-[274.398px] relative shrink-0 w-[239.538px]" data-name="Group 1171275805 1">
+          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgGroup11712758051} />
         </div>
       </div>
     </div>
@@ -391,13 +386,18 @@ function TextContainer4() {
 }
 
 function ButtonContainer2() {
-  const { openForm } = useForm();
-  
+  const { openModal } = useFormModal();
+
   return (
-    <div onClick={openForm} className="h-[53.154px] relative rounded-[27.612px] shrink-0 w-full cursor-pointer" data-name="Button Container" style={{ backgroundImage: "linear-gradient(161.473deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%), linear-gradient(90deg, rgb(255, 0, 246) 0%, rgb(255, 0, 246) 100%)" }}>
+    <div 
+      onClick={openModal}
+      className="h-[53.154px] relative rounded-[27.612px] shrink-0 w-full cursor-pointer" 
+      data-name="Button Container" 
+      style={{ backgroundImage: "linear-gradient(161.473deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%), linear-gradient(90deg, rgb(255, 0, 246) 0%, rgb(255, 0, 246) 100%)" }}
+    >
       <div className="flex flex-row items-center justify-center size-full">
         <div className="content-stretch flex items-center justify-center px-[13.806px] py-[11.045px] relative size-full">
-          <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[20.709px] relative shrink-0 text-[16.567px] text-center text-white uppercase">REGISTER FOR THE NEXT AVAILABLE SESSION</p>
+          <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[20.709px] relative shrink-0 text-[16.567px] text-center text-white uppercase">RESERVE MY FREE WORKSHOP SEAT</p>
         </div>
       </div>
     </div>
@@ -424,15 +424,13 @@ function ContentContainer1() {
 
 function ContentSection2() {
   return (
-    <div className="bg-white relative shrink-0 w-full" data-name="Content Section">
-      <div className="flex flex-col items-center justify-center w-full">
-        <div className="content-stretch flex flex-col gap-[37.967px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[235px] py-[37.967px] relative w-full">
-          <div className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[normal] relative shrink-0 text-[#0d1353] text-[38.657px] text-center tracking-[-1.5463px] w-full whitespace-pre-wrap">
-            <p className="mb-0">{`Why Technical Consultants Can't Solve This `}</p>
-            <p className="font-['Playfair_Display:SemiBold_Italic',sans-serif] font-semibold italic">(But You Can)</p>
-          </div>
-          <ContentContainer1 />
+    <div className="bg-white w-full" data-name="Content Section">
+      <div className="max-w-[1728px] mx-auto flex flex-col gap-[37.967px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[235px] py-[80px] md:py-[120px] w-full">
+        <div className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[normal] relative shrink-0 text-[#0d1353] text-[38.657px] text-center tracking-[-1.5463px] w-full whitespace-pre-wrap">
+          <p className="mb-0">{`Why Technical Consultants Can't Solve This `}</p>
+          <p className="font-['Playfair_Display:SemiBold_Italic',sans-serif] font-semibold italic">(But You Can)</p>
         </div>
+        <ContentContainer1 />
       </div>
     </div>
   );
@@ -624,11 +622,16 @@ function TextContainer14() {
 }
 
 function ButtonContainer3() {
-  const { openForm } = useForm();
-  
+  const { openModal } = useFormModal();
+
   return (
-    <div onClick={openForm} className="bg-white content-stretch flex h-[53.154px] items-center justify-center px-[13.806px] py-[11.045px] relative rounded-[27.612px] shrink-0 w-full max-w-[441.799px] cursor-pointer" data-name="Button Container">
-      <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[20.709px] relative shrink-0 text-[#0d1353] text-[16.567px] text-center uppercase">REGISTER FOR THE NEXT AVAILABLE SESSION</p>
+    <div 
+      onClick={openModal}
+      className="content-stretch flex h-[53.154px] items-center justify-center px-[13.806px] py-[11.045px] relative rounded-[27.612px] shrink-0 w-full max-w-[441.799px] cursor-pointer" 
+      style={{ backgroundImage: "linear-gradient(161.704deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%)" }} 
+      data-name="Button Container"
+    >
+      <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[20.709px] relative shrink-0 text-white text-[16.567px] text-center uppercase">RESERVE MY FREE WORKSHOP SEAT</p>
     </div>
   );
 }
@@ -644,11 +647,13 @@ function TextContainer13() {
 
 function Image() {
   return (
-    <div className="content-stretch flex flex-col gap-[55.915px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[270px] py-[80px] relative shrink-0 w-full" data-name="Image">
-      <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage} />
-      <TextContainer5 />
-      <ContentContainer2 />
-      <TextContainer13 />
+    <div className="relative w-full" data-name="Image">
+      <img alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" src={imgImage} />
+      <div className="relative max-w-[1728px] mx-auto flex flex-col gap-[55.915px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[270px] py-[80px] w-full">
+        <TextContainer5 />
+        <ContentContainer2 />
+        <TextContainer13 />
+      </div>
     </div>
   );
 }
@@ -656,14 +661,9 @@ function Image() {
 function AuthorInfo1() {
   return (
     <div className="content-stretch flex flex-col items-start not-italic relative shrink-0 w-full" data-name="Author Info">
-      <p className="bg-clip-text font-['Manrope:Bold',sans-serif] font-bold leading-[0] relative shrink-0 text-[0px] text-[14.97px] text-white w-full" style={{ backgroundImage: "linear-gradient(90deg, rgb(60, 128, 255) 0%, rgb(117, 34, 189) 100%), linear-gradient(-5.1157deg, rgb(249, 5, 242) 16.982%, rgb(0, 0, 0) 86.805%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)", WebkitTextFillColor: "transparent" }}>
-        <span className="bg-clip-text font-['Inter:Bold',sans-serif] leading-[20.316px]" style={{ backgroundImage: "linear-gradient(90deg, rgb(60, 128, 255) 0%, rgb(117, 34, 189) 100%), linear-gradient(-5.1157deg, rgb(249, 5, 242) 16.982%, rgb(0, 0, 0) 86.805%), linear-gradient(90deg, rgb(13, 19, 83) 0%, rgb(13, 19, 83) 100%)", WebkitTextFillColor: "transparent" }}>
-          RICHARD
-        </span>
-        <span className="bg-clip-text font-['Inter:Light',sans-serif] font-light leading-[20.316px]" style={{ backgroundImage: "linear-gradient(90deg, rgb(60, 128, 255) 0%, rgb(117, 34, 189) 100%), linear-gradient(-5.1157deg, rgb(249, 5, 242) 16.982%, rgb(0, 0, 0) 86.805%), linear-gradient(90deg, rgb(13, 19, 83) 0%, rgb(13, 19, 83) 100%)", WebkitTextFillColor: "transparent" }}>
-          BRANSON
-        </span>
-      </p>
+      <div style={{ width: "138.414px", height: "11.2273px" }}>
+        <AuthorNameBranson />
+      </div>
       <p className="font-['Inter:Regular',sans-serif] font-normal leading-[16.039px] relative shrink-0 text-[10.693px] w-full">Businessman, Investor and Founder of Virgin Group</p>
     </div>
   );
@@ -688,14 +688,12 @@ function TestimonialContainer1() {
 
 function ContentSection3() {
   return (
-    <div className="bg-[#f5f5fc] relative shrink-0 w-full" data-name="Content Section">
-      <div className="flex flex-row items-center justify-center size-full">
-        <div className="content-center flex flex-wrap gap-[11.762px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[180px] py-[17.258px] relative w-full">
-          <div className="h-[274.398px] relative shrink-0 w-[239.538px]" data-name="Group 1171275805-1 1">
-            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgGroup117127580511} />
-          </div>
-          <TestimonialContainer1 />
+    <div className="bg-[#f5f5fc] w-full" data-name="Content Section">
+      <div className="max-w-[1728px] mx-auto flex flex-wrap gap-[11.762px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[180px] py-[17.258px] w-full">
+        <div className="h-[274.398px] relative shrink-0 w-[239.538px]" data-name="Group 1171275805-1 1">
+          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgGroup117127580511} />
         </div>
+        <TestimonialContainer1 />
       </div>
     </div>
   );
@@ -746,7 +744,7 @@ function WygCardImage({ src }: { src: string }) {
     </div>
   );
 }
-// ─────────────────────────────────────────────────────────────────────────────
+// ──────────────────────────────────────────────────────────────���──────────────
 
 function ContentContainer3() {
   return (
@@ -826,12 +824,10 @@ function Container10() {
 
 function ContentSection4() {
   return (
-    <div className="bg-white relative shrink-0 w-full" data-name="Content Section">
-      <div className="flex flex-col items-center size-full">
-        <div className="content-stretch flex flex-col gap-[46.251px] items-center px-4 sm:px-8 md:px-16 lg:px-[270px] py-[75.934px] relative w-full">
-          <Container7 />
-          <Container10 />
-        </div>
+    <div className="bg-white w-full" data-name="Content Section">
+      <div className="max-w-[1728px] mx-auto flex flex-col gap-[46.251px] items-center px-4 sm:px-8 md:px-16 lg:px-[270px] py-[75.934px] w-full">
+        <Container7 />
+        <Container10 />
       </div>
     </div>
   );
@@ -1293,12 +1289,10 @@ function TextContainer15() {
 
 function ContentSection5() {
   return (
-    <div className="bg-[#f5f5fc] relative shrink-0 w-full" data-name="Content Section">
-      <div className="flex flex-col items-center size-full">
-        <div className="content-stretch flex flex-col gap-[44.18px] items-center px-4 sm:px-8 md:px-16 lg:px-[120px] xl:px-[270px] py-[69px] relative w-full">
-          <Container16 />
-          <TextContainer15 />
-        </div>
+    <div className="bg-[#f5f5fc] w-full" data-name="Content Section">
+      <div className="max-w-[1728px] mx-auto flex flex-col gap-[44.18px] items-center px-4 sm:px-8 md:px-16 lg:px-[120px] xl:px-[270px] py-[69px] w-full">
+        <Container16 />
+        <TextContainer15 />
       </div>
     </div>
   );
@@ -1502,11 +1496,16 @@ function TextContainer24() {
 }
 
 function ButtonContainer4() {
-  const { openForm } = useForm();
-  
+  const { openModal } = useFormModal();
+
   return (
-    <div onClick={openForm} className="content-stretch flex h-[53.154px] items-center justify-center px-[13.806px] py-[11.045px] relative rounded-[27.612px] shrink-0 w-full max-w-[472.172px] cursor-pointer" data-name="Button Container" style={{ backgroundImage: "linear-gradient(162.437deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%), linear-gradient(90deg, rgb(255, 0, 246) 0%, rgb(255, 0, 246) 100%)" }}>
-      <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[20.709px] relative shrink-0 text-[16.567px] text-center text-white uppercase">REGISTER FOR THE NEXT AVAILABLE SESSION</p>
+    <div 
+      onClick={openModal}
+      className="content-stretch flex h-[53.154px] items-center justify-center px-[13.806px] py-[11.045px] relative rounded-[27.612px] shrink-0 w-full max-w-[472.172px] cursor-pointer" 
+      data-name="Button Container" 
+      style={{ backgroundImage: "linear-gradient(162.437deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%), linear-gradient(90deg, rgb(255, 0, 246) 0%, rgb(255, 0, 246) 100%)" }}
+    >
+      <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[20.709px] relative shrink-0 text-[16.567px] text-center text-white uppercase">RESERVE MY FREE WORKSHOP SEAT</p>
     </div>
   );
 }
@@ -1522,13 +1521,11 @@ function TextContainer23() {
 
 function ContentSection6() {
   return (
-    <div className="bg-white relative shrink-0 w-full" data-name="Content Section">
-      <div className="flex flex-col items-center justify-center size-full">
-        <div className="content-stretch flex flex-col gap-[54px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[270px] py-[88px] relative w-full">
-          <LeadershipTitle />
-          <TextContainer17 />
-          <TextContainer23 />
-        </div>
+    <div className="bg-white w-full" data-name="Content Section">
+      <div className="max-w-[1728px] mx-auto flex flex-col gap-[54px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[270px] py-[88px] w-full">
+        <LeadershipTitle />
+        <TextContainer17 />
+        <TextContainer23 />
       </div>
     </div>
   );
@@ -2025,37 +2022,39 @@ function TextContainer34() {
   );
 }
 
-function TextContainer33() {
+function Image1() {
   return (
-    <div className="flex flex-col gap-[26.232px] items-start relative shrink-0 w-full md:w-[404px] px-5 sm:px-7 md:px-8 pt-6 md:pt-0 pb-8 md:pb-12" data-name="Text Container">
-      <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[1.2] relative shrink-0 text-[20px] sm:text-[24px] md:text-[28.993px] text-white tracking-[-0.8px] md:tracking-[-1.1597px] w-full">{`Here's What Happens When You Register:`}</p>
-      <TextContainer34 />
-    </div>
-  );
-}
-
-function TextContainer32() {
-  return (
-    <div className="w-full flex flex-col md:flex-row items-end relative" data-name="Text Container">
-      <TextContainer33 />
-      <div className="hidden md:flex items-center justify-center relative shrink-0 self-end">
-        <div className="-scale-y-100 flex-none rotate-180">
-          <div className="h-[440.863px] relative w-[403.237px]" data-name="kane 2">
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <img alt="" className="absolute h-[117.39%] left-[-0.1%] max-w-none top-0 w-[100.21%]" src={imgKane2} />
+    /* Full-width card with background image */
+    <div className="relative w-full overflow-hidden rounded-[11.045px]" data-name="Image">
+      <img
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        src={imgImage1}
+      />
+      {/* Horizontal auto layout: text left, Kane image pinned right */}
+      <div className="relative flex flex-col md:flex-row items-end gap-16 lg:gap-24 w-full">
+        {/* Text content — flex-1 so it fills space; max-w keeps it readable */}
+        <div className="flex flex-col gap-[26.232px] items-start flex-1 min-w-0 max-w-[640px] px-8 lg:px-12 pt-[53px] pb-10 md:pb-14">
+          <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[1.2] text-[20px] sm:text-[24px] md:text-[28.993px] text-white tracking-[-0.8px] md:tracking-[-1.1597px] w-full">
+            {`Here's What Happens When You Register:`}
+          </p>
+          <TextContainer34 />
+        </div>
+        {/* Kane image — shrink-0 keeps fixed size; ml-auto pushes it to the right */}
+        <div className="hidden md:block shrink-0 self-end ml-auto">
+          <div className="-scale-y-100 rotate-180">
+            <div className="h-[440.863px] w-[403.237px] relative" data-name="kane 2">
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <img
+                  alt=""
+                  className="absolute h-[117.39%] left-[-0.1%] max-w-none top-0 w-[100.21%]"
+                  src={imgKane2}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function Image1() {
-  return (
-    <div className="flex flex-col items-end justify-end overflow-clip pt-[53px] relative rounded-[11.045px] shrink-0 w-full" data-name="Image">
-      <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[11.045px] size-full" src={imgImage1} />
-      <TextContainer32 />
     </div>
   );
 }
@@ -2082,11 +2081,16 @@ function TextContainer42() {
 }
 
 function ButtonContainer5() {
-  const { openForm } = useForm();
-  
+  const { openModal } = useFormModal();
+
   return (
-    <div onClick={openForm} className="content-stretch flex h-[53.154px] items-center justify-center px-[13.806px] py-[11.045px] relative rounded-[27.612px] shrink-0 w-full max-w-[461.128px] cursor-pointer" data-name="Button Container" style={{ backgroundImage: "linear-gradient(162.043deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%), linear-gradient(90deg, rgb(255, 0, 246) 0%, rgb(255, 0, 246) 100%)" }}>
-      <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[20.709px] relative shrink-0 text-[16.567px] text-center text-white uppercase">REGISTER FOR THE NEXT AVAILABLE SESSION</p>
+    <div 
+      onClick={openModal}
+      className="content-stretch flex h-[53.154px] items-center justify-center px-[13.806px] py-[11.045px] relative rounded-[27.612px] shrink-0 w-full max-w-[461.128px] cursor-pointer" 
+      data-name="Button Container" 
+      style={{ backgroundImage: "linear-gradient(162.043deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%), linear-gradient(90deg, rgb(255, 0, 246) 0%, rgb(255, 0, 246) 100%)" }}
+    >
+      <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[20.709px] relative shrink-0 text-[16.567px] text-center text-white uppercase">RESERVE MY FREE WORKSHOP SEAT</p>
     </div>
   );
 }
@@ -2103,10 +2107,12 @@ function TextContainer40() {
 
 function ContentSection7() {
   return (
-    <div className="bg-[#f9fafb] content-stretch flex flex-col gap-[46.251px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[270px] py-[98px] relative shrink-0 w-full" data-name="Content Section">
-      <TextContainer25 />
-      <Image1 />
-      <TextContainer40 />
+    <div className="bg-[#f9fafb] w-full" data-name="Content Section">
+      <div className="max-w-[1728px] mx-auto flex flex-col gap-[46.251px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[270px] py-[98px] w-full">
+        <TextContainer25 />
+        <Image1 />
+        <TextContainer40 />
+      </div>
     </div>
   );
 }
@@ -2215,13 +2221,15 @@ function FaqContainer() {
 
 function Faq() {
   return (
-    <div className="content-stretch flex flex-col gap-[49.702px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[270px] py-[66px] relative shrink-0 w-full" data-name="FAQ">
-      <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgFaq} />
-      <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[0] relative shrink-0 text-[0px] text-center text-white tracking-[-1.5463px] w-full whitespace-pre-wrap">
-        <span className="leading-[normal] text-[38.657px]">{`Frequently Asked `}</span>
-        <span className="font-['Playfair_Display:SemiBold_Italic',sans-serif] font-semibold italic leading-[normal] text-[42.799px]">Questions</span>
-      </p>
-      <FaqContainer />
+    <div className="relative w-full" data-name="FAQ">
+      <img alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" src={imgFaq} />
+      <div className="relative max-w-[1728px] mx-auto flex flex-col gap-[49.702px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[270px] py-[66px] w-full">
+        <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[0] relative shrink-0 text-[0px] text-center text-white tracking-[-1.5463px] w-full whitespace-pre-wrap">
+          <span className="leading-[normal] text-[38.657px]">{`Frequently Asked `}</span>
+          <span className="font-['Playfair_Display:SemiBold_Italic',sans-serif] font-semibold italic leading-[normal] text-[42.799px]">Questions</span>
+        </p>
+        <FaqContainer />
+      </div>
     </div>
   );
 }
@@ -2246,24 +2254,27 @@ function TextContainer43() {
 }
 
 function ButtonContainer6() {
-  const { openForm } = useForm();
-  
+  const { openModal } = useFormModal();
+
   return (
-    <div onClick={openForm} className="bg-white content-stretch flex h-[53.154px] items-center justify-center px-[13.806px] py-[11.045px] relative rounded-[27.612px] shrink-0 w-full max-w-[441.799px] cursor-pointer" data-name="Button Container">
-      <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[20.709px] relative shrink-0 text-[#0d1353] text-[16.567px] text-center uppercase">REGISTER FOR THE NEXT AVAILABLE SESSION</p>
+    <div 
+      onClick={openModal}
+      className="content-stretch flex h-[53.154px] items-center justify-center px-[13.806px] py-[11.045px] relative rounded-[27.612px] shrink-0 w-full max-w-[441.799px] cursor-pointer" 
+      style={{ backgroundImage: "linear-gradient(161.704deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%)" }} 
+      data-name="Button Container"
+    >
+      <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[20.709px] relative shrink-0 text-white text-[16.567px] text-center uppercase">RESERVE MY FREE WORKSHOP SEAT</p>
     </div>
   );
 }
 
 function Image2() {
   return (
-    <div className="relative shrink-0 w-full" data-name="Image">
-      <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage2} />
-      <div className="flex flex-col items-center justify-center size-full">
-        <div className="content-stretch flex flex-col gap-[33.135px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[270px] py-[59px] relative w-full">
-          <TextContainer43 />
-          <ButtonContainer6 />
-        </div>
+    <div className="relative w-full" data-name="Image">
+      <img alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" src={imgImage2} />
+      <div className="relative max-w-[1728px] mx-auto flex flex-col gap-[33.135px] items-center justify-center px-4 sm:px-8 md:px-16 lg:px-[270px] py-[59px] w-full">
+        <TextContainer43 />
+        <ButtonContainer6 />
       </div>
     </div>
   );
@@ -2272,13 +2283,8 @@ function Image2() {
 export default function LandingPage() {
   return (
     <div className="content-stretch flex flex-col items-center relative size-full" data-name="LANDING PAGE">
-      <NavBar />
       <Hero />
       <FeaturedOn />
-      <AwardsSection />
-      <Frame1707482421 />
-      <StatsStrip />
-      <TrustpilotSection />
       <RecognitionSection />
       <Frame3 />
       <ContentSection1 />

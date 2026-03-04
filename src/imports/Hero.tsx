@@ -1,43 +1,5 @@
 import imgHero from "figma:asset/91adc766b1205f595aa50f4db3f2b02a40094294.png";
-import { useForm } from "../app/context/FormContext";
-import { useVideo } from "../app/context/VideoContext";
-
-function NavBar() {
-  const { openVideo } = useVideo();
-  
-  return (
-    <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="NAV BAR">
-      {/* Logo */}
-      <div className="flex items-center gap-2">
-        <svg className="shrink-0 w-5 h-5 md:w-6 md:h-6" fill="none" viewBox="0 0 24 24">
-          <path
-            d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
-            stroke="url(#logoGrad)"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <defs>
-            <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop stopColor="#AA45E8" />
-              <stop offset="1" stopColor="#E84592" />
-            </linearGradient>
-          </defs>
-        </svg>
-        <span className="font-['Plus_Jakarta_Sans:Light',sans-serif] font-light text-[#0d1353] text-base md:text-lg tracking-wide">
-          CHANGE <span className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold">AI</span> MANAGEMENT
-        </span>
-      </div>
-      {/* CTA nav button */}
-      <div 
-        onClick={openVideo}
-        className="bg-[#0d1353] flex items-center justify-center px-4 md:px-6 py-2 rounded-full shrink-0 cursor-pointer hover:opacity-90 transition-opacity"
-      >
-        <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold text-white text-xs md:text-sm uppercase tracking-wide">Watch the video</p>
-      </div>
-    </div>
-  );
-}
+import { useFormModal } from "../app/hooks/useFormModal";
 
 function HeadlineContainer() {
   return (
@@ -62,81 +24,50 @@ function HeadlineContainer() {
   );
 }
 
-function ButtonContainer() {
-  const { openForm } = useForm();
-  
-  return (
-    <div
-      onClick={openForm}
-      className="flex items-center justify-center w-full sm:w-auto px-6 md:px-[43px] py-[11px] rounded-[27px] shrink-0 cursor-pointer hover:opacity-90 transition-opacity"
-      data-name="Button Container"
-      style={{
-        backgroundImage:
-          "linear-gradient(161.704deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%)",
-      }}
-    >
-      <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[1.25] text-[13px] sm:text-[15px] md:text-[16.567px] text-center text-white uppercase tracking-wide whitespace-nowrap">
-        REGISTER FOR THE NEXT AVAILABLE SESSION
-      </p>
-    </div>
-  );
-}
-
-function TextContainer() {
-  return (
-    <div
-      className="flex flex-col gap-6 md:gap-[34.516px] items-start w-full md:flex-[1_0_0]"
-      data-name="Text Container"
-    >
-      <div className="font-['Plus_Jakarta_Sans:Medium',sans-serif] font-medium text-[#0d1353] w-full">
-        <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold mb-2 text-[17px] sm:text-[19px] md:text-[22.09px] leading-[1.4]">
-          {"Free 2-hour executive workshop reveals why 95% of AI implementations fail,"}
-        </p>
-        <p className="text-[14px] sm:text-[16px] md:text-[17.948px] leading-[1.6]">
-          {"and how YOU can become the consultant who fixes what $500M in technology spending couldn't."}
-        </p>
-      </div>
-      <ButtonContainer />
-    </div>
-  );
-}
-
 function VideoPlaceholder() {
   return (
     <div
-      className="w-full md:flex-[1_0_0] h-[220px] sm:h-[280px] md:h-[323.848px] relative rounded-[8.788px] overflow-hidden shrink-0"
-      data-name="Image"
+      className="w-full max-w-[640px] mx-auto h-[176px] sm:h-[272px] md:h-[360px] relative rounded-[12px] overflow-hidden"
+      style={{
+        boxShadow: "0 8px 40px rgba(107,36,160,0.25)",
+      }}
     >
       <iframe
         src="https://drive.google.com/file/d/1wBzB2g5TP3kXI11Kw7SMCl9Mhyo4bIrL/preview"
-        className="absolute inset-0 w-full h-full rounded-[8.788px]"
+        className="absolute inset-0 w-full h-full border-0"
+        allow="autoplay; encrypted-media; fullscreen"
         allowFullScreen
-        title="Video"
+        title="AI Change Management Workshop"
       />
     </div>
   );
 }
 
-function ContentContainer() {
-  return (
-    <div
-      className="flex flex-col md:flex-row gap-6 md:gap-[36.586px] items-center justify-center w-full"
-      data-name="Content Container"
-    >
-      <VideoPlaceholder />
-      <TextContainer />
-    </div>
-  );
-}
+function BelowVideoContent() {
+  const { openModal } = useFormModal();
 
-function ContentSection() {
   return (
-    <div
-      className="flex flex-col gap-8 md:gap-[46px] items-center w-full"
-      data-name="Content Section"
-    >
-      <HeadlineContainer />
-      <ContentContainer />
+    <div className="flex flex-col items-center gap-6 w-full max-w-[900px] mx-auto text-center">
+      <div className="font-['Plus_Jakarta_Sans:Medium',sans-serif] font-medium text-[#0d1353]">
+        <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold mb-2 text-[17px] sm:text-[19px] md:text-[22px] leading-[1.4]">
+          {"Free 2-hour executive workshop reveals why 95% of AI implementations fail,"}
+        </p>
+        <p className="text-[14px] sm:text-[16px] md:text-[18px] leading-[1.6] text-[#0d1353]/70">
+          {"and how YOU can become the consultant who fixes what $500M in technology spending couldn't."}
+        </p>
+      </div>
+      {/* CTA Button */}
+      <div
+        onClick={openModal}
+        className="flex items-center justify-center px-6 md:px-[43px] py-[11px] rounded-[27px] shrink-0 cursor-pointer hover:opacity-90 transition-opacity"
+        style={{
+          backgroundImage: "linear-gradient(161.704deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%)",
+        }}
+      >
+        <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[1.25] text-[13px] sm:text-[15px] md:text-[16.567px] text-center text-white uppercase tracking-wide whitespace-nowrap">
+          RESERVE MY FREE WORKSHOP SEAT
+        </p>
+      </div>
     </div>
   );
 }
@@ -149,8 +80,12 @@ export default function Hero() {
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         src={imgHero}
       />
-      <div className="relative flex flex-col items-center justify-center w-full h-full pt-12 pb-12 md:pt-20 md:pb-20 px-4 sm:px-8 md:px-16 lg:px-[200px] gap-6 md:gap-10">
-        <ContentSection />
+      <div className="relative w-full">
+        <div className="max-w-[1728px] mx-auto flex flex-col items-center justify-center w-full pt-12 pb-12 md:pt-20 md:pb-20 px-4 sm:px-8 md:px-16 lg:px-[120px] gap-8 md:gap-10">
+          <HeadlineContainer />
+          <VideoPlaceholder />
+          <BelowVideoContent />
+        </div>
       </div>
     </div>
   );

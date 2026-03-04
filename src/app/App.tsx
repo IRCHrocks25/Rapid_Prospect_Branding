@@ -1,15 +1,23 @@
 import LandingPage from "../imports/LandingPage";
-import { FormProvider } from "./context/FormContext";
-import { VideoProvider } from "./context/VideoContext";
+import FormModal from "./components/FormModal";
+import { FormModalProvider } from "./contexts/FormModalContext";
+import { useFormModal } from "./hooks/useFormModal";
+
+function AppContent() {
+  const { isOpen, closeModal } = useFormModal();
+
+  return (
+    <div className="w-full overflow-x-hidden bg-white">
+      <LandingPage />
+      <FormModal open={isOpen} onOpenChange={(open) => !open && closeModal()} />
+    </div>
+  );
+}
 
 export default function App() {
   return (
-    <FormProvider>
-      <VideoProvider>
-        <div className="w-full overflow-x-hidden">
-          <LandingPage />
-        </div>
-      </VideoProvider>
-    </FormProvider>
+    <FormModalProvider>
+      <AppContent />
+    </FormModalProvider>
   );
 }

@@ -3,7 +3,7 @@ import svgPaths from "./svg-idhhngmh13";
 function Container1() {
   return (
     <div className="content-stretch flex items-center justify-center p-[6.903px] relative shrink-0" data-name="Container">
-      <p className="font-['Plus_Jakarta_Sans:Medium',sans-serif] font-medium leading-[normal] relative shrink-0 text-[13.806px] text-center text-white tracking-[3.3135px] uppercase">Featured On</p>
+      <p className="font-['Plus_Jakarta_Sans:Medium',sans-serif] font-medium leading-[normal] relative shrink-0 text-[13.806px] text-center text-white tracking-[3.3135px] uppercase">Featured In</p>
     </div>
   );
 }
@@ -103,9 +103,11 @@ function Cred() {
 
 export default function FeaturedOn() {
   return (
-    <div className="bg-[#0d1353] w-full flex flex-col items-center justify-center py-6 md:py-8 px-4 sm:px-8 md:px-[200px]" data-name="featured on">
-      <Container />
-      <Cred />
+    <div className="bg-[#0d1353] w-full" data-name="featured on">
+      <div className="max-w-[1728px] mx-auto flex flex-col items-center justify-center py-6 md:py-8 px-4 sm:px-8 md:px-[120px] w-full">
+        <Container />
+        <Cred />
+      </div>
     </div>
   );
 }
