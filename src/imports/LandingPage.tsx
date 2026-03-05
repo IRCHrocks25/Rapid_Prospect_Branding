@@ -1,8 +1,12 @@
+"use client";
+
+import * as React from "react";
 import svgPaths from "./svg-x0sxij5v6";
 import Hero from "./Hero";
 import AuthorName from "./AuthorName";
 import AuthorNameBranson from "./AuthorName-2030-70";
-import { useFormModal } from "../app/hooks/useFormModal";
+import { WorkshopFormProvider, useWorkshopForm } from "./WorkshopFormContext";
+import WorkshopForm from "./WorkshopForm";
 import imgRecognitionItem11 from "figma:asset/7ec0de8a8abdc498a15aadceb83ba4791beff1b3.png";
 import imgRecognitionItem21 from "figma:asset/3ff4e580ddef3f92a5044bdd3bd162ff9f3ad2c5.png";
 import imgRecognitionItem31 from "figma:asset/e47fbbaa0b5f9e3f81a1e223712e2cef7b46b31c.png";
@@ -386,15 +390,10 @@ function TextContainer4() {
 }
 
 function ButtonContainer2() {
-  const { openModal } = useFormModal();
+  const { openForm } = useWorkshopForm();
 
   return (
-    <div 
-      onClick={openModal}
-      className="h-[53.154px] relative rounded-[27.612px] shrink-0 w-full cursor-pointer" 
-      data-name="Button Container" 
-      style={{ backgroundImage: "linear-gradient(161.473deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%), linear-gradient(90deg, rgb(255, 0, 246) 0%, rgb(255, 0, 246) 100%)" }}
-    >
+    <div onClick={openForm} className="h-[53.154px] relative rounded-[27.612px] shrink-0 w-full cursor-pointer" data-name="Button Container" style={{ backgroundImage: "linear-gradient(161.473deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%), linear-gradient(90deg, rgb(255, 0, 246) 0%, rgb(255, 0, 246) 100%)" }}>
       <div className="flex flex-row items-center justify-center size-full">
         <div className="content-stretch flex items-center justify-center px-[13.806px] py-[11.045px] relative size-full">
           <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[20.709px] relative shrink-0 text-[16.567px] text-center text-white uppercase">RESERVE MY FREE WORKSHOP SEAT</p>
@@ -622,15 +621,10 @@ function TextContainer14() {
 }
 
 function ButtonContainer3() {
-  const { openModal } = useFormModal();
+  const { openForm } = useWorkshopForm();
 
   return (
-    <div 
-      onClick={openModal}
-      className="content-stretch flex h-[53.154px] items-center justify-center px-[13.806px] py-[11.045px] relative rounded-[27.612px] shrink-0 w-full max-w-[441.799px] cursor-pointer" 
-      style={{ backgroundImage: "linear-gradient(161.704deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%)" }} 
-      data-name="Button Container"
-    >
+    <div onClick={openForm} className="content-stretch flex h-[53.154px] items-center justify-center px-[13.806px] py-[11.045px] relative rounded-[27.612px] shrink-0 w-full max-w-[441.799px] cursor-pointer" style={{ backgroundImage: "linear-gradient(161.704deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%)" }} data-name="Button Container">
       <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[20.709px] relative shrink-0 text-white text-[16.567px] text-center uppercase">RESERVE MY FREE WORKSHOP SEAT</p>
     </div>
   );
@@ -1496,15 +1490,10 @@ function TextContainer24() {
 }
 
 function ButtonContainer4() {
-  const { openModal } = useFormModal();
+  const { openForm } = useWorkshopForm();
 
   return (
-    <div 
-      onClick={openModal}
-      className="content-stretch flex h-[53.154px] items-center justify-center px-[13.806px] py-[11.045px] relative rounded-[27.612px] shrink-0 w-full max-w-[472.172px] cursor-pointer" 
-      data-name="Button Container" 
-      style={{ backgroundImage: "linear-gradient(162.437deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%), linear-gradient(90deg, rgb(255, 0, 246) 0%, rgb(255, 0, 246) 100%)" }}
-    >
+    <div onClick={openForm} className="content-stretch flex h-[53.154px] items-center justify-center px-[13.806px] py-[11.045px] relative rounded-[27.612px] shrink-0 w-full max-w-[472.172px] cursor-pointer" data-name="Button Container" style={{ backgroundImage: "linear-gradient(162.437deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%), linear-gradient(90deg, rgb(255, 0, 246) 0%, rgb(255, 0, 246) 100%)" }}>
       <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[20.709px] relative shrink-0 text-[16.567px] text-center text-white uppercase">RESERVE MY FREE WORKSHOP SEAT</p>
     </div>
   );
@@ -2081,15 +2070,10 @@ function TextContainer42() {
 }
 
 function ButtonContainer5() {
-  const { openModal } = useFormModal();
+  const { openForm } = useWorkshopForm();
 
   return (
-    <div 
-      onClick={openModal}
-      className="content-stretch flex h-[53.154px] items-center justify-center px-[13.806px] py-[11.045px] relative rounded-[27.612px] shrink-0 w-full max-w-[461.128px] cursor-pointer" 
-      data-name="Button Container" 
-      style={{ backgroundImage: "linear-gradient(162.043deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%), linear-gradient(90deg, rgb(255, 0, 246) 0%, rgb(255, 0, 246) 100%)" }}
-    >
+    <div onClick={openForm} className="content-stretch flex h-[53.154px] items-center justify-center px-[13.806px] py-[11.045px] relative rounded-[27.612px] shrink-0 w-full max-w-[461.128px] cursor-pointer" data-name="Button Container" style={{ backgroundImage: "linear-gradient(162.043deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%), linear-gradient(90deg, rgb(255, 0, 246) 0%, rgb(255, 0, 246) 100%)" }}>
       <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[20.709px] relative shrink-0 text-[16.567px] text-center text-white uppercase">RESERVE MY FREE WORKSHOP SEAT</p>
     </div>
   );
@@ -2254,15 +2238,10 @@ function TextContainer43() {
 }
 
 function ButtonContainer6() {
-  const { openModal } = useFormModal();
+  const { openForm } = useWorkshopForm();
 
   return (
-    <div 
-      onClick={openModal}
-      className="content-stretch flex h-[53.154px] items-center justify-center px-[13.806px] py-[11.045px] relative rounded-[27.612px] shrink-0 w-full max-w-[441.799px] cursor-pointer" 
-      style={{ backgroundImage: "linear-gradient(161.704deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%)" }} 
-      data-name="Button Container"
-    >
+    <div onClick={openForm} className="content-stretch flex h-[53.154px] items-center justify-center px-[13.806px] py-[11.045px] relative rounded-[27.612px] shrink-0 w-full max-w-[441.799px] cursor-pointer" style={{ backgroundImage: "linear-gradient(161.704deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%)" }} data-name="Button Container">
       <p className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold leading-[20.709px] relative shrink-0 text-white text-[16.567px] text-center uppercase">RESERVE MY FREE WORKSHOP SEAT</p>
     </div>
   );
@@ -2280,7 +2259,7 @@ function Image2() {
   );
 }
 
-export default function LandingPage() {
+function LandingPageContent() {
   return (
     <div className="content-stretch flex flex-col items-center relative size-full" data-name="LANDING PAGE">
       <Hero />
@@ -2297,6 +2276,15 @@ export default function LandingPage() {
       <ContentSection7 />
       <Faq />
       <Image2 />
+      <WorkshopForm />
     </div>
+  );
+}
+
+export default function LandingPage() {
+  return (
+    <WorkshopFormProvider>
+      <LandingPageContent />
+    </WorkshopFormProvider>
   );
 }

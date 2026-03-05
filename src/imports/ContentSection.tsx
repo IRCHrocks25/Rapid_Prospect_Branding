@@ -1,6 +1,9 @@
+"use client";
+
+import * as React from "react";
 import imgKane from "figma:asset/c30511ef0c221800b1cbb3424dddbadd7bee2ab4.png";
 import imgJeff from "figma:asset/71389237e1e07cd893b8939905c28896608797aa.png";
-import { useFormModal } from "../app/hooks/useFormModal";
+import { useWorkshopForm } from "./WorkshopFormContext";
 
 function LeadershipTitle() {
   return (
@@ -125,11 +128,11 @@ function ClosingText() {
 }
 
 function RegisterButton() {
-  const { openModal } = useFormModal();
+  const { openForm } = useWorkshopForm();
 
   return (
     <div
-      onClick={openModal}
+      onClick={openForm}
       className="flex h-[53.154px] items-center justify-center px-4 py-[11.045px] rounded-[27.612px] w-full max-w-[472.172px] cursor-pointer"
       data-name="ButtonContainer"
       style={{

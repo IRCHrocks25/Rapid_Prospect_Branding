@@ -1,5 +1,8 @@
+"use client";
+
+import * as React from "react";
 import imgHero from "figma:asset/91adc766b1205f595aa50f4db3f2b02a40094294.png";
-import { useFormModal } from "../app/hooks/useFormModal";
+import { useWorkshopForm } from "./WorkshopFormContext";
 
 function HeadlineContainer() {
   return (
@@ -27,7 +30,7 @@ function HeadlineContainer() {
 function VideoPlaceholder() {
   return (
     <div
-      className="w-full max-w-[640px] mx-auto h-[176px] sm:h-[272px] md:h-[360px] relative rounded-[12px] overflow-hidden"
+      className="w-full max-w-[640px] lg:max-w-[900px] mx-auto h-[176px] sm:h-[272px] md:h-[360px] lg:h-[540px] relative rounded-[12px] overflow-hidden"
       style={{
         boxShadow: "0 8px 40px rgba(107,36,160,0.25)",
       }}
@@ -44,7 +47,7 @@ function VideoPlaceholder() {
 }
 
 function BelowVideoContent() {
-  const { openModal } = useFormModal();
+  const { openForm } = useWorkshopForm();
 
   return (
     <div className="flex flex-col items-center gap-6 w-full max-w-[900px] mx-auto text-center">
@@ -58,7 +61,7 @@ function BelowVideoContent() {
       </div>
       {/* CTA Button */}
       <div
-        onClick={openModal}
+        onClick={openForm}
         className="flex items-center justify-center px-6 md:px-[43px] py-[11px] rounded-[27px] shrink-0 cursor-pointer hover:opacity-90 transition-opacity"
         style={{
           backgroundImage: "linear-gradient(161.704deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%)",
