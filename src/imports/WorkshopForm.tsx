@@ -7,27 +7,32 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../app/components/ui/dialog";
-import { Input } from "../app/components/ui/input";
-import { Button } from "../app/components/ui/button";
 import { useWorkshopForm } from "./WorkshopFormContext";
 
 export default function WorkshopForm() {
   const { isOpen, closeForm } = useWorkshopForm();
-  const [formData, setFormData] = React.useState({
-    name: "",
-    email: "",
-  });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    closeForm();
-  };
+  React.useEffect(() => {
+    // Load the form embed script
+    const script = document.createElement("script");
+    script.src = "https://l.industryrockstars.ch/js/form_embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      // Cleanup script on unmount
+      const existingScript = document.querySelector(
+        'script[src="https://l.industryrockstars.ch/js/form_embed.js"]'
+      );
+      if (existingScript) {
+        document.body.removeChild(existingScript);
+      }
+    };
+  }, []);
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && closeForm()}>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <div className="flex flex-col items-center text-center gap-1 mb-4">
             <DialogTitle className="font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold text-[#0d1353] text-[18px] md:text-[20px] leading-[1.1]">
@@ -38,54 +43,30 @@ export default function WorkshopForm() {
             </p>
           </div>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <label
-              htmlFor="name"
-              className="font-['Plus_Jakarta_Sans:Medium',sans-serif] font-medium text-[#0d1353] text-sm"
-            >
-              Name
-            </label>
-            <Input
-              id="name"
-              type="text"
-              placeholder="Enter your name"
-              value={formData.name}
-              onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div className="space-y-2">
-            <label
-              htmlFor="email"
-              className="font-['Plus_Jakarta_Sans:Medium',sans-serif] font-medium text-[#0d1353] text-sm"
-            >
-              Email
-            </label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
-              required
-            />
-          </div>
-          <Button
-            type="submit"
-            className="w-full font-['Plus_Jakarta_Sans:Bold',sans-serif] font-bold text-white uppercase"
+        <div className="w-full" style={{ height: "593px" }}>
+          <iframe
+            src="https://l.industryrockstars.ch/widget/form/fzCQlAmoUcjf5ymPGPzp"
             style={{
-              backgroundImage:
-                "linear-gradient(161.704deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%)",
+              width: "100%",
+              height: "100%",
+              border: "none",
+              borderRadius: "32px",
             }}
-          >
-            Reserve My Seat
-          </Button>
-        </form>
+            id="inline-fzCQlAmoUcjf5ymPGPzp"
+            data-layout='{"id":"INLINE"}'
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="AI Change Management"
+            data-height="593"
+            data-layout-iframe-id="inline-fzCQlAmoUcjf5ymPGPzp"
+            data-form-id="fzCQlAmoUcjf5ymPGPzp"
+            title="AI Change Management"
+          />
+        </div>
       </DialogContent>
     </Dialog>
   );
