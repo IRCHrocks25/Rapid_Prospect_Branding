@@ -3,6 +3,7 @@ import { useState } from "react";
 
 const packages = [
   {
+    id: "starter" as const,
     name: "Starter",
     tagline: "For solo founders & startups",
     price: 997,
@@ -28,6 +29,7 @@ const packages = [
     popular: false,
   },
   {
+    id: "growth" as const,
     name: "Growth",
     tagline: "For ambitious businesses ready to scale",
     price: 2497,
@@ -54,6 +56,7 @@ const packages = [
     popular: true,
   },
   {
+    id: "empire" as const,
     name: "Empire",
     tagline: "Full brand ecosystem for market leaders",
     price: 4997,
@@ -82,6 +85,31 @@ const packages = [
 
 export function Packages() {
   const [billing, setBilling] = useState<"one-time" | "payment-plan">("one-time");
+  const [loading, setLoading] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleCheckout(pkg: (typeof packages)[0]) {
+    setError(null);
+    setLoading(pkg.id);
+    try {
+      const res = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          packageId: pkg.id,
+          billing,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Checkout failed");
+      if (data.url) window.location.href = data.url;
+      else throw new Error("No checkout URL returned");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong");
+    } finally {
+      setLoading(null);
+    }
+  }
 
   return (
     <section id="packages" className="bg-[#101010] py-28">
@@ -113,6 +141,12 @@ export function Packages() {
             Every package includes a 100% satisfaction guarantee. If you're not happy after the first round, we'll refund you in full.
           </p>
         </div>
+
+        {error && (
+          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-sm text-red-400 text-sm text-center">
+            {error}
+          </div>
+        )}
 
         {/* Billing toggle */}
         <div className="flex justify-center mb-14">
@@ -238,18 +272,20 @@ export function Packages() {
                   </ul>
 
                   {/* CTA */}
-                  <a
-                    href="#contact"
-                    className={`flex items-center justify-center gap-2 py-4 rounded-sm transition-all group ${
+                  <button
+                    type="button"
+                    onClick={() => handleCheckout(pkg)}
+                    disabled={!!loading}
+                    className={`flex items-center justify-center gap-2 py-4 rounded-sm transition-all group disabled:opacity-60 disabled:cursor-not-allowed ${
                       pkg.popular
                         ? "bg-[#E9B46C] text-[#101010] hover:bg-[#f0c47c]"
                         : "border border-white/20 text-white hover:border-[#E9B46C]/50 hover:text-[#E9B46C]"
                     }`}
                     style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: "0.9rem" }}
                   >
-                    {pkg.cta}
-                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                  </a>
+                    {loading === pkg.id ? "Redirecting…" : pkg.cta}
+                    <ArrowRight size={16} className={`group-hover:translate-x-1 transition-transform ${loading === pkg.id ? "hidden" : ""}`} />
+                  </button>
                 </div>
               </div>
             );

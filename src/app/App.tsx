@@ -7,6 +7,7 @@ import { ThumbnailStrip } from "./components/ThumbnailStrip";
 import { WhyNow } from "./components/WhyNow";
 import { WhatYouGet } from "./components/WhatYouGet";
 import { IsThisYou } from "./components/IsThisYou";
+import { Packages } from "./components/Packages";
 import { Investment } from "./components/Investment";
 import { FAQ } from "./components/FAQ";
 import { FinalWord } from "./components/FinalWord";
@@ -25,6 +26,7 @@ export default function App() {
       <WhyNow />
       <WhatYouGet />
       <IsThisYou />
+      <Packages />
       <Investment />
       <FAQ />
       <FinalWord />
