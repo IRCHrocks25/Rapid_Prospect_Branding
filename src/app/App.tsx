@@ -12,8 +12,15 @@ import { Investment } from "./components/Investment";
 import { FAQ } from "./components/FAQ";
 import { FinalWord } from "./components/FinalWord";
 import { Footer } from "./components/Footer";
+import { SuccessPage } from "./components/SuccessPage";
 
 export default function App() {
+  const isSuccess = typeof window !== "undefined" && (window.location.pathname === "/success" || window.location.search.includes("success=true"));
+
+  if (isSuccess) {
+    return <SuccessPage />;
+  }
+
   return (
     <div
       className="min-h-screen bg-[#140c07]"

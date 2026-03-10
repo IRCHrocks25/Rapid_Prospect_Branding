@@ -1,6 +1,8 @@
+import 'dotenv/config';
 import express from 'express';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { existsSync } from 'fs';
 import Stripe from 'stripe';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -15,10 +17,17 @@ const stripe = process.env.STRIPE_SECRET_KEY
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 
+// const PACKAGES = {
+//   starter: { name: 'Starter', price: 99700, pricePlan: 33300 },
+//   growth: { name: 'Growth', price: 249700, pricePlan: 83300 },
+//   empire: { name: 'Empire', price: 499700, pricePlan: 166600 },
+// };
+
+// Test prices: $0.50 each (Stripe minimum for USD)
 const PACKAGES = {
-  starter: { name: 'Starter', price: 99700, pricePlan: 33300 },
-  growth: { name: 'Growth', price: 249700, pricePlan: 83300 },
-  empire: { name: 'Empire', price: 499700, pricePlan: 166600 },
+  starter: { name: 'Starter', price: 50, pricePlan: 17 },
+  growth: { name: 'Growth', price: 50, pricePlan: 17 },
+  empire: { name: 'Empire', price: 50, pricePlan: 17 },
 };
 
 // Webhook needs raw body — must be before express.json()
@@ -77,7 +86,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
   const amount = isPlan ? pkg.pricePlan : pkg.price;
   try {
     const sessionConfig = {
-      success_url: `${BASE_URL}/?success=true`,
+      success_url: `${BASE_URL}/success`,
       cancel_url: `${BASE_URL}/#packages`,
       customer_email: undefined,
       metadata: { packageId },
@@ -127,12 +136,26 @@ app.post('/api/create-checkout-session', async (req, res) => {
   }
 });
 
-// Serve static files from the build directory
-app.use(express.static(join(__dirname, 'build')));
+const buildPath = join(__dirname, 'build');
+const indexPath = join(buildPath, 'index.html');
+
+if (existsSync(buildPath)) {
+  app.use(express.static(buildPath));
+}
 
 // Handle SPA routing - serve index.html for all routes
 app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, 'build', 'index.html'));
+  if (existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else {
+    res.status(503).send(`
+      <html><body style="font-family:sans-serif;padding:2rem;background:#140c07;color:#fff;text-align:center;">
+        <h1>Build required</h1>
+        <p>Run <code style="background:#333;padding:0.2rem 0.5rem;border-radius:4px;">npm run build</code> then <code style="background:#333;padding:0.2rem 0.5rem;border-radius:4px;">npm start</code></p>
+        <p style="color:#888;margin-top:2rem;">API is running — checkout will still redirect to Stripe.</p>
+      </body></html>
+    `);
+  }
 });
 
 app.listen(PORT, () => {
