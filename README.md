@@ -1,7 +1,7 @@
 
-  # AI CHANGE MANAGEMENT B
+  # THE ULTIMATE BRAND PACKAGE FOR REAL ESTATE PROFESSIONALS
 
-  This is a code bundle for AI CHANGE MANAGEMENT B. The original project is available at https://www.figma.com/design/NeHeIYM8rks9uWTATzxtKu/AI-CHANGE-MANAGEMENT-B.
+  This is a code bundle for THE ULTIMATE BRAND PACKAGE FOR REAL ESTATE PROFESSIONALS. The original project is available at https://www.figma.com/design/NeHeIYM8rks9uWTATzxtKu/AI-CHANGE-MANAGEMENT-B.
 
   ## Running the code
 
