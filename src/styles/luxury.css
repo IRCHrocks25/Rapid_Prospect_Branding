@@ -1,0 +1,120 @@
+/* ─── Luxury enhancements ─────────────────────────────── */
+
+/* Hide default cursor on all non-touch devices */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Gold gradient text utility */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #f0c060 0%, #E9B46C 40%, #c8872a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section noise overlay */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+/* Shimmer sweep keyframe */
+@keyframes shimmerSweep {
+  0%   { transform: translateX(-100%) skewX(-12deg); }
+  100% { transform: translateX(300%) skewX(-12deg); }
+}
+
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+  transform: translateX(-100%) skewX(-12deg);
+  transition: none;
+}
+
+.shimmer-btn:hover::after {
+  animation: shimmerSweep 0.7s ease forwards;
+}
+
+/* Gold glow pulse for accent elements */
+@keyframes goldGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(233,180,108,0); }
+  50%       { box-shadow: 0 0 24px 4px rgba(233,180,108,0.2); }
+}
+
+.gold-glow-pulse {
+  animation: goldGlow 3s ease-in-out infinite;
+}
+
+/* Border shimmer */
+@keyframes borderShimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.shimmer-border {
+  background: linear-gradient(
+    90deg,
+    rgba(233,180,108,0.15) 0%,
+    rgba(233,180,108,0.6) 30%,
+    rgba(233,180,108,0.15) 60%,
+    rgba(233,180,108,0.0) 100%
+  );
+  background-size: 200% auto;
+  animation: borderShimmer 4s linear infinite;
+}
+
+/* Fade-up entrance */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Gold line draw */
+@keyframes lineDrawH {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+/* Perspective tilt utility */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease, box-shadow 0.3s ease;
+}
+
+/* Luxury section texture — fine diagonal grain */
+.luxury-texture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 1;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='diag' patternUnits='userSpaceOnUse' width='6' height='6' patternTransform='rotate(45)'%3E%3Cline x1='0' y1='0' x2='0' y2='6' stroke='rgba(233,180,108,0.028)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='120' height='120' fill='url(%23diag)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 70% 55% at 92% 0%, rgba(233,180,108,0.055) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 40% at 100% 8%, rgba(0,38,85,0.35) 0%, transparent 65%);
+}

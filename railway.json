@@ -1,5 +1,5 @@
 {
-  "$schema": "https://railway.app/railway.schema.json",
+  "$schema": "rapidprospectbranding-production.up.railway.app",
   "build": {
     "builder": "RAILPACK",
     "buildCommand": "npm install && npm run build"
