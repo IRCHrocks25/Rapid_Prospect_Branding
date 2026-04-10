@@ -256,7 +256,9 @@ export function Investment() {
           transition={{ duration: 0.6, delay: 0.1 }}
         >
           <motion.a
-            href="#"
+            href="https://link.rapidprospect.com/widget/booking/J1iigEEcwm7PSnpC3Qew"
+            target="_blank"
+            rel="noopener noreferrer"
             className="shimmer-btn inline-flex items-center gap-3 bg-[#E9B46C] text-[#101010] px-10 py-4 rounded-sm group"
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700 }}
             whileHover={{ scale: 1.03, boxShadow: "0 12px 48px rgba(233,180,108,0.35)" }}

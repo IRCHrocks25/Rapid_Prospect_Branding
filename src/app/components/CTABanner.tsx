@@ -53,7 +53,9 @@ export function CTABanner() {
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </a>
           <a
-            href="#"
+            href="https://link.rapidprospect.com/widget/booking/J1iigEEcwm7PSnpC3Qew"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 border border-white/20 text-white px-10 py-4 rounded-sm hover:border-white/50 transition-all"
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 600 }}
           >

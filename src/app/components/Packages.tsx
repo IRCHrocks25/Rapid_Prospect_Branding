@@ -84,7 +84,7 @@ const packages = [
 ];
 
 export function Packages() {
-  const [billing, setBilling] = useState<"one-time" | "payment-plan">("one-time");
+  const [billing, setBilling] = useState<"one-time" | "payment-plan">("payment-plan");
   const [loading, setLoading] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 

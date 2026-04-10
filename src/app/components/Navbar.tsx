@@ -78,7 +78,9 @@ export function Navbar() {
 
         {/* CTA */}
         <motion.a
-          href="#investment"
+          href="https://link.rapidprospect.com/widget/booking/J1iigEEcwm7PSnpC3Qew"
+          target="_blank"
+          rel="noopener noreferrer"
           className="shimmer-btn hidden lg:inline-flex items-center gap-2 bg-[#E9B46C] text-[#101010] px-5 py-2.5 rounded-sm text-sm"
           style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700 }}
           whileHover={{ scale: 1.04, boxShadow: "0 6px 24px rgba(233,180,108,0.35)" }}
@@ -122,7 +124,9 @@ export function Navbar() {
                 </a>
               ))}
               <a
-                href="#investment"
+                href="https://link.rapidprospect.com/widget/booking/J1iigEEcwm7PSnpC3Qew"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setMenuOpen(false)}
                 className="mt-2 inline-flex justify-center bg-[#E9B46C] text-[#101010] px-5 py-3 rounded-sm text-sm"
                 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700 }}

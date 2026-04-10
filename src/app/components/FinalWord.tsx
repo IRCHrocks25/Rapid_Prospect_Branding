@@ -186,7 +186,9 @@ export function FinalWord() {
           className="flex flex-wrap gap-4 justify-center"
         >
           <motion.a
-            href="#"
+            href="https://link.rapidprospect.com/widget/booking/J1iigEEcwm7PSnpC3Qew"
+            target="_blank"
+            rel="noopener noreferrer"
             className="shimmer-btn inline-flex items-center gap-3 bg-[#E9B46C] text-[#101010] px-8 py-4 rounded-sm group"
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: "0.93rem" }}
             whileHover={{ scale: 1.03, boxShadow: "0 12px 50px rgba(233,180,108,0.4)" }}

@@ -86,7 +86,9 @@ export function Footer() {
                 {items.map((item) => (
                   <li key={item}>
                     <motion.a
-                      href="#"
+                      href={item === "Book a Strategy Call" ? "https://link.rapidprospect.com/widget/booking/J1iigEEcwm7PSnpC3Qew" : "#"}
+                      target={item === "Book a Strategy Call" ? "_blank" : undefined}
+                      rel={item === "Book a Strategy Call" ? "noopener noreferrer" : undefined}
                       className="relative text-sm inline-block"
                       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "rgba(255,255,255,0.25)" }}
                       whileHover={{ color: "#E9B46C" }}

@@ -17,24 +17,17 @@ const stripe = process.env.STRIPE_SECRET_KEY
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 
-// const PACKAGES = {
-//   starter: { name: 'Starter', price: 99700, pricePlan: 33300 },
-//   growth: { name: 'Growth', price: 249700, pricePlan: 83300 },
-//   empire: { name: 'Empire', price: 499700, pricePlan: 166600 },
-// };
-
-// Test prices: $0.50 each (Stripe minimum for USD)
 const PACKAGES = {
-  starter: { name: 'Starter', price: 50, pricePlan: 17 },
-  growth: { name: 'Growth', price: 50, pricePlan: 17 },
-  empire: { name: 'Empire', price: 50, pricePlan: 17 },
+  starter: { name: 'Starter', price: 99700,  pricePlan: 33300  }, // $997 / $333/mo x3
+  growth:  { name: 'Growth',  price: 249700, pricePlan: 83300  }, // $2,497 / $833/mo x3
+  empire:  { name: 'Empire',  price: 499700, pricePlan: 166600 }, // $4,997 / $1,666/mo x3
 };
 
 // Webhook needs raw body — must be before express.json()
 app.post(
   '/api/webhook',
   express.raw({ type: 'application/json' }),
-  (req, res) => {
+  async (req, res) => {
     if (!stripe) {
       console.error('Stripe not configured');
       return res.status(500).json({ error: 'Stripe not configured' });
@@ -56,6 +49,17 @@ app.post(
       case 'checkout.session.completed': {
         const session = event.data.object;
         console.log('Payment completed:', session.id, session.customer_email);
+        // For payment-plan subscriptions, set cancel_at to 90 days (3 monthly payments)
+        // cancel_at cannot be set on the Checkout Session directly — must be done here
+        if (session.mode === 'subscription' && session.subscription) {
+          try {
+            const cancelAt = Math.floor(Date.now() / 1000) + 90 * 24 * 60 * 60;
+            await stripe.subscriptions.update(session.subscription, { cancel_at: cancelAt });
+            console.log('Subscription cancel_at set to:', new Date(cancelAt * 1000).toISOString());
+          } catch (err) {
+            console.error('Failed to set subscription cancel_at:', err.message);
+          }
+        }
         break;
       }
       case 'invoice.paid':
@@ -92,7 +96,6 @@ app.post('/api/create-checkout-session', async (req, res) => {
       metadata: { packageId },
     };
     if (isPlan) {
-      const cancelAt = Math.floor(Date.now() / 1000) + 90 * 24 * 60 * 60;
       sessionConfig.mode = 'subscription';
       sessionConfig.line_items = [
         {
@@ -108,9 +111,9 @@ app.post('/api/create-checkout-session', async (req, res) => {
           quantity: 1,
         },
       ];
+      // cancel_at is set via webhook after checkout.session.completed fires
       sessionConfig.subscription_data = {
         metadata: { packageId },
-        cancel_at: cancelAt,
       };
     } else {
       sessionConfig.mode = 'payment';
