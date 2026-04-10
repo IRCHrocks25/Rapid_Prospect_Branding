@@ -299,7 +299,9 @@ export function WhatYouGet() {
           className="mt-14 text-center"
         >
           <motion.a
-            href="#investment"
+            href="https://link.rapidprospect.com/widget/booking/J1iigEEcwm7PSnpC3Qew"
+            target="_blank"
+            rel="noopener noreferrer"
             className="shimmer-btn inline-flex items-center gap-2 bg-[#E9B46C] text-[#101010] px-10 py-4 rounded-sm"
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700 }}
             whileHover={{ scale: 1.04, boxShadow: "0 8px 40px rgba(233,180,108,0.35)" }}

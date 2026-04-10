@@ -18,7 +18,6 @@ const socials = [
   { label: "IG", href: "https://www.instagram.com/navglobalsolutions/" },
   { label: "LI", href: "https://www.linkedin.com/company/nav-global-solutions/?viewAsMember=true" },
   { label: "FB", href: "https://www.facebook.com/RapidProspect100" },
-  { label: "BE", href: "#" },
 ];
 
 export function Footer() {
