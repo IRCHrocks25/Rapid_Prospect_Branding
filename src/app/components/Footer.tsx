@@ -14,7 +14,12 @@ const footerLinks = {
   Legal: ["Privacy Policy", "Terms of Service", "Refund Policy"],
 };
 
-const socials = ["IG", "LI", "TW", "BE"];
+const socials = [
+  { label: "IG", href: "https://www.instagram.com/navglobalsolutions/" },
+  { label: "LI", href: "https://www.linkedin.com/company/nav-global-solutions/?viewAsMember=true" },
+  { label: "FB", href: "https://www.facebook.com/RapidProspect100" },
+  { label: "BE", href: "#" },
+];
 
 export function Footer() {
   return (
@@ -55,8 +60,10 @@ export function Footer() {
             <div className="flex gap-3">
               {socials.map((s) => (
                 <motion.a
-                  key={s}
-                  href="#"
+                  key={s.label}
+                  href={s.href}
+                  target={s.href !== "#" ? "_blank" : undefined}
+                  rel={s.href !== "#" ? "noopener noreferrer" : undefined}
                   className="w-9 h-9 border border-white/8 rounded-sm flex items-center justify-center text-white/25 text-xs"
                   style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 600 }}
                   whileHover={{
@@ -67,7 +74,7 @@ export function Footer() {
                   }}
                   transition={{ duration: 0.2 }}
                 >
-                  {s}
+                  {s.label}
                 </motion.a>
               ))}
             </div>
